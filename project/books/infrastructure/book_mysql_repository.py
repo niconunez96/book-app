@@ -14,7 +14,7 @@ class BookMySQLRepository(BookRepository):
         ]
 
     def find_by_id(self, id: int) -> Book:
-        Book("New book", "Some description", datetime.now()),
+        return Book("New book", "Some description", datetime.now())
 
     def save(self, entity: Book) -> Book:
-        Book("New book", "Some description", datetime.now()),
+        return Book("New book", "Some description", datetime.now())

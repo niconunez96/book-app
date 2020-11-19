@@ -9,3 +9,11 @@ class Book:
         self.title = title
         self.description = description
         self.created = created
+
+    def __dict__(self):
+        return {
+            'id': self.id,
+            'title': self.title,
+            'description': self.description,
+            'created': str(self.created),
+        }
