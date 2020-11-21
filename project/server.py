@@ -1,4 +1,10 @@
-from project.controller import app
+from flask import Flask
+
+
+app = Flask(__name__)
+
+# include endpoints
+from project.controller import books  # noqa
 
 
 if __name__ == "__main__":
