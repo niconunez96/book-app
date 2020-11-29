@@ -12,6 +12,7 @@ class ProductionConfig(Config):
 class DevelopmentConfig(Config):
     ENV = "development"
     DEBUG = True
+    DATABASE_URI = 'postgresql://dev_user:1234@db_server:5432/book_db'
 
 
 class TestingConfig(Config):

@@ -1,0 +1,25 @@
+version: "3"
+services:
+    db_server:
+        image: postgres:9.6-alpine
+        container_name: postgre-db
+        restart: always
+        environment:
+            - POSTGRES_PASSWORD=1234
+            - POSTGRES_USER=dev_user
+            - POSTGRES_DB=book_db
+        expose:
+            - 5432
+        healthcheck:
+            test: exit 0
+    book_app:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        container_name: book-app
+        environment:
+            - ENV_CONFIG=settings.settings.DevelopmentConfig
+        depends_on:
+            - db_server
+        ports:
+            - "8000:5000"
