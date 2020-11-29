@@ -9,9 +9,9 @@ COPY ./requirements.txt .
 RUN pip install -r requirements.txt
 
 COPY ./project ./project
-ENV FLASK_APP=project/server.py
-ENV FLASK_ENV=development
+ENV ENV_CONFIG=settings.settings.DevelopmentConfig
 EXPOSE 5000
 
 COPY ./server.ini .
-CMD ["flask", "run", "--host=0.0.0.0"]
+ENTRYPOINT [ "python" ]
+CMD ["./project/server.py"]

@@ -1,5 +1,5 @@
 from typing import List
-from project.books.domain.book import Book
+from books.domain.book import Book
 
 
 class BookRepository:

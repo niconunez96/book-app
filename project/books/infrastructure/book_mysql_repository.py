@@ -1,8 +1,8 @@
 from datetime import datetime
 from typing import List
 
-from project.books.domain.book_repository import BookRepository
-from project.books.domain.book import Book
+from books.domain.book_repository import BookRepository
+from books.domain.book import Book
 
 
 class BookMySQLRepository(BookRepository):

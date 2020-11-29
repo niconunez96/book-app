@@ -1,7 +1,5 @@
 .EXPORT_ALL_VARIABLES:
-export FLASK_APP = project.server:app
-export FLASK_ENV = development
-export FLASK_DEBUG = 1
+export ENV_CONFIG = settings.settings.DevelopmentConfig
 
 runserver:
-	flask run
+	python ./project/server.py
