@@ -8,10 +8,13 @@ WORKDIR /app
 COPY ./requirements.txt .
 RUN pip install -r requirements.txt
 
-COPY ./project ./project
-ENV ENV_CONFIG=settings.settings.DevelopmentConfig
 EXPOSE 5000
-
+COPY ./project ./project
 COPY ./server.ini .
+
+COPY ./migrations ./migrations
+RUN python ./project/manage.py db migrate
+RUN python ./project/manage.py db upgrade
+
 ENTRYPOINT [ "python" ]
 CMD ["./project/server.py"]
