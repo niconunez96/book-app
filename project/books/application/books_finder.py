@@ -10,7 +10,7 @@ class BooksFinder:
 
     def execute(self) -> List[dict]:
         books = self.book_repository.find_all()
-        return [book.__dict__() for book in books]
+        return [book.to_dict() for book in books]
 
 
 class BookFinder:
@@ -19,4 +19,4 @@ class BookFinder:
         self.book_repository = book_repository
 
     def execute(self, book_id: int) -> dict:
-        return self.book_repository.find_by_id(book_id).__dict__()
+        return self.book_repository.find_by_id(book_id).to_dict()

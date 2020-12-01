@@ -1,18 +1,33 @@
+import os
+
+
 class Config(object):
     DEBUG = False
     TESTING = False
-    # DATABASE_URI = 'sqlite:///:memory:'
+    DB_CONNECTOR = os.environ.get("DB_CONNECTOR")
+    DB_USER = os.environ.get("DB_USER")
+    DB_PASS = os.environ.get("DB_PASS")
+    DB_HOST = os.environ.get("DB_HOST")
+    DB_NAME = os.environ.get("DB_NAME")
+
+    @property
+    def DATABASE_URI(self):
+        return "{connector}://{user}:{pwd}@{host}/{db}".format(
+            connector=self.DB_CONNECTOR,
+            user=self.DB_USER,
+            pwd=self.DB_PASS,
+            host=self.DB_HOST,
+            db=self.DB_NAME,
+        )
 
 
 class ProductionConfig(Config):
     ENV = "production"
-    DATABASE_URI = 'mysql://user@localhost/foo'
 
 
 class DevelopmentConfig(Config):
     ENV = "development"
     DEBUG = True
-    DATABASE_URI = 'postgresql://dev_user:1234@db_server:5432/book_db'
 
 
 class TestingConfig(Config):
