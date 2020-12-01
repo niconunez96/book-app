@@ -2,6 +2,14 @@ from typing import List
 from books.domain.book import Book
 
 
+class EntityNotFound(Exception):
+    pass
+
+
+class CouldNotSaveEntity(Exception):
+    pass
+
+
 class BookRepository:
 
     def find_all(self) -> List[Book]:
