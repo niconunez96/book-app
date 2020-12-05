@@ -1,7 +1,11 @@
 from flask import Blueprint, jsonify, request
-from books.application.author_finder import AuthorFinder, AuthorsFinder
-from books.application.author_creator import AuthorCreator
-from books.application.book_creator import BookCreator, AuthorDoesNotExist
+from books.application.author import (
+    AuthorFinder,
+    AuthorsFinder,
+    AuthorCreator,
+    AuthorDoesNotExist,
+)
+from books.application.book import BookCreator, AuthorBooksFinder
 from books.domain import EntityNotFound
 from books.infrastructure.author_mysql_repository import AuthorMySQLRepository
 from books.infrastructure.book_mysql_repository import BookMySQLRepository
@@ -56,6 +60,25 @@ def add_book(author_id: int):
             {"resource_url": "/api/v1/books/{}".format(book_id)},
             201,
         )
+    except AuthorDoesNotExist:
+        return Response(
+            {
+                'error': "NOT_FOUND",
+                'description': "Resource requested does not exist",
+            },
+            404,
+        )
+
+
+@authors.route("/<int:author_id>/books/", methods=['GET'])
+def find_books(author_id: int):
+    author_book_finder = AuthorBooksFinder(
+        AuthorMySQLRepository(),
+        BookMySQLRepository(),
+    )
+    try:
+        author_books = author_book_finder.execute(author_id)
+        return Response(jsonify(author_books), 200)
     except AuthorDoesNotExist:
         return Response(
             {

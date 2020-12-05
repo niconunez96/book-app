@@ -1,12 +1,9 @@
+from books.application.author import AuthorDoesNotExist
 from books.domain.book_repository import BookRepository
 from books.domain.author_repository import AuthorRepository
 from books.domain import EntityNotFound
 from books.domain.book import Book
 from books.domain.author import Author
-
-
-class AuthorDoesNotExist(Exception):
-    pass
 
 
 class BookCreator:

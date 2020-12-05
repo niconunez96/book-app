@@ -7,6 +7,7 @@ from books.domain import (
 )
 from books.domain.book_repository import BookRepository
 from books.domain.book import Book
+from books.domain.author import Author
 
 
 class BookMySQLRepository(BookRepository):
@@ -19,6 +20,9 @@ class BookMySQLRepository(BookRepository):
         if not entity:
             raise EntityNotFound
         return entity
+
+    def find_by_author(self, author_id: int) -> List[Book]:
+        return db.session.query(Book).filter(Book.author_id == author_id).all()
 
     def save(self, entity: Book) -> Book:
         try:
