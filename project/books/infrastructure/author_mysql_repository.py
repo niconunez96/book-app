@@ -9,7 +9,7 @@ from books.domain.author_repository import AuthorRepository
 from books.domain.author import Author
 
 
-class BookMySQLRepository(AuthorRepository):
+class AuthorMySQLRepository(AuthorRepository):
 
     def find_all(self) -> List[Author]:
         return db.session.query(Author).all()

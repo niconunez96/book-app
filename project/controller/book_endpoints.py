@@ -3,7 +3,7 @@ from books.application.books_finder import BooksFinder, BookFinder
 from books.application.book_creator import BookCreator
 from books.domain import EntityNotFound
 from books.infrastructure.book_mysql_repository import BookMySQLRepository  # noqa
-from controller import Response
+from controller.response import Response
 
 
 books = Blueprint("books", __name__, url_prefix="/api/v1/books")
@@ -26,7 +26,7 @@ def create():
     )
 
 
-@books.route('/<book_id>/', methods=['GET'])
+@books.route('/<int:book_id>/', methods=['GET'])
 def find_by_id(book_id: int):
     try:
         book_finder = BookFinder(BookMySQLRepository())

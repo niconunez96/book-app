@@ -1,4 +1,2 @@
-from collections import namedtuple
-
-
-Response = namedtuple("Response", ["body", "status_code"])
+from .book_endpoints import books  # noqa
+from .author_endpoints import authors  # noqa
