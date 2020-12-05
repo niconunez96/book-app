@@ -1,7 +1,7 @@
 from flask import jsonify, Blueprint, request
 from books.application.books_finder import BooksFinder, BookFinder
 from books.application.book_creator import BookCreator
-from books.domain.book_repository import EntityNotFound
+from books.domain import EntityNotFound
 from books.infrastructure.book_mysql_repository import BookMySQLRepository  # noqa
 from controller import Response
 

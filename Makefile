@@ -7,15 +7,11 @@ export DB_HOST=localhost
 export DB_NAME=book_db
 
 create_migrations:
-	source env/bin/activate
 	python ./project/manage.py db init
 	python ./project/manage.py db migrate
-	deactivate
 
 update_requirements:
-	source env/bin/activate
 	pip freeze | grep -v 0.0.0 > requirements.txt
-	deactivate
 
 server-logs:
 	docker logs -f book-app

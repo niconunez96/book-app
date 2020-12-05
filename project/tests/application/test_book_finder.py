@@ -3,7 +3,7 @@ from mock import Mock
 
 from books.domain.book import Book
 from books.application.books_finder import BookFinder, BooksFinder
-from books.domain.book_repository import EntityNotFound
+from books.domain import EntityNotFound
 
 
 class TestBookFinder:

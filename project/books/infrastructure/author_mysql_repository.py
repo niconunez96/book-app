@@ -5,22 +5,22 @@ from books.domain import (
     CouldNotSaveEntity,
     EntityNotFound,
 )
-from books.domain.book_repository import BookRepository
-from books.domain.book import Book
+from books.domain.author_repository import AuthorRepository
+from books.domain.author import Author
 
 
-class BookMySQLRepository(BookRepository):
+class BookMySQLRepository(AuthorRepository):
 
-    def find_all(self) -> List[Book]:
-        return db.session.query(Book).all()
+    def find_all(self) -> List[Author]:
+        return db.session.query(Author).all()
 
-    def find_by_id(self, id: int) -> Book:
-        entity = db.session.query(Book).get(id)
+    def find_by_id(self, id: int) -> Author:
+        entity = db.session.query(Author).get(id)
         if not entity:
             raise EntityNotFound
         return entity
 
-    def save(self, entity: Book) -> Book:
+    def save(self, entity: Author) -> Author:
         try:
             db.session.add(entity)
             db.session.commit()

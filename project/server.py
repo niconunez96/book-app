@@ -2,7 +2,7 @@ import os
 from flask import Flask
 from database import db
 from werkzeug.utils import import_string
-from controller.books import books
+from controller.book_endpoints import books
 
 
 settings = os.environ.get("ENV_CONFIG")

@@ -2,14 +2,6 @@ from typing import List
 from books.domain.book import Book
 
 
-class EntityNotFound(Exception):
-    pass
-
-
-class CouldNotSaveEntity(Exception):
-    pass
-
-
 class BookRepository:
 
     def find_all(self) -> List[Book]:
@@ -18,5 +10,5 @@ class BookRepository:
     def find_by_id(self, id: int) -> Book:
         raise NotImplementedError
 
-    def save(self, entity) -> Book:
+    def save(self, entity: Book) -> Book:
         raise NotImplementedError
