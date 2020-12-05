@@ -1,6 +1,5 @@
-from flask import jsonify, Blueprint, request
+from flask import jsonify, Blueprint
 from books.application.books_finder import BooksFinder, BookFinder
-from books.application.book_creator import BookCreator
 from books.domain import EntityNotFound
 from books.infrastructure.book_mysql_repository import BookMySQLRepository  # noqa
 from controller.response import Response
@@ -13,17 +12,6 @@ books = Blueprint("books", __name__, url_prefix="/api/v1/books")
 def find_all():
     books_finder = BooksFinder(BookMySQLRepository())
     return Response(jsonify(books_finder.execute()), 200)
-
-
-@books.route('/', methods=['POST'])
-def create():
-    body = request.json
-    book_creator = BookCreator(BookMySQLRepository())
-    book_id = book_creator.execute(book_body=body)
-    return Response(
-        {'resource_url': "/api/v1/books/{}/".format(book_id)},
-        201,
-    )
 
 
 @books.route('/<int:book_id>/', methods=['GET'])

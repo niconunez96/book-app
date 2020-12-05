@@ -9,5 +9,5 @@ class AuthorCreator:
 
     def execute(self, author_body: dict) -> int:
         new_author = Author(author_body['name'], author_body['biography'])
-        author_id = self.author_repository.save(new_author)
-        return author_id
+        author = self.author_repository.save(new_author)
+        return author.id
