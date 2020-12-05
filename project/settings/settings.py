@@ -34,3 +34,4 @@ class TestingConfig(Config):
     ENV = "testing"
     TESTING = True
     DEBUG = True
+    DB_NAME = "book_test_db"

@@ -6,13 +6,22 @@ export DB_PASS=39853201
 export DB_HOST=localhost
 export DB_NAME=book_db
 
-run_migrations:
+create_migrations:
+	source env/bin/activate
 	python ./project/manage.py db init
 	python ./project/manage.py db migrate
-	python ./project/manage.py db upgrade
-
-runserver:
-	python ./project/server.py
+	deactivate
 
 update_requirements:
+	source env/bin/activate
 	pip freeze | grep -v 0.0.0 > requirements.txt
+	deactivate
+
+server-logs:
+	docker logs -f book-app
+
+runserver:
+	docker-compose up --build -d
+
+stopserver:
+	docker-compose down
