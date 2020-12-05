@@ -24,6 +24,7 @@ class BookMySQLRepository(BookRepository):
         try:
             db.session.add(entity)
             db.session.commit()
+            return entity
         except Exception:
             db.session.rollback()
             raise CouldNotSaveEntity

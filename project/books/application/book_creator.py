@@ -9,4 +9,5 @@ class BookCreator:
 
     def execute(self, book_body: dict) -> int:
         new_book = Book(book_body['title'], book_body['description'])
-        self.book_repository.save(new_book)
+        book_saved = self.book_repository.save(new_book)
+        return book_saved.id

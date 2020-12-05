@@ -23,6 +23,7 @@ services:
             - DB_PASS=1234
             - DB_HOST=db_server
             - DB_NAME=book_db
+            - WAIT_HOSTS=db_server:5432
         volumes: 
             - ./project:/app/project
         entrypoint:

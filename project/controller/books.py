@@ -19,8 +19,11 @@ def find_all():
 def create():
     body = request.json
     book_creator = BookCreator(BookMySQLRepository())
-    book_creator.execute(book_body=body)
-    return Response({}, 201)
+    book_id = book_creator.execute(book_body=body)
+    return Response(
+        {'resource_url': "/api/v1/books/{}/".format(book_id)},
+        201,
+    )
 
 
 @books.route('/<book_id>/', methods=['GET'])
