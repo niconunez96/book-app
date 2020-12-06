@@ -1,16 +1,16 @@
 import pytest
-from werkzeug.utils import import_string
 
-from server import app
+import server
+from server import AppBuilder
 from database import db
 
 
 @pytest.fixture
 def app_test():
-    config_class = import_string("settings.settings.TestingConfig")()
-    app.config.from_object(config_class)
-    app.config['SQLALCHEMY_DATABASE_URI'] = config_class.DATABASE_URI
-    yield app
+    setting = "settings.settings.TestingConfig"
+    app_builder = AppBuilder(server.__name__, setting)
+    app_builder.add_database()
+    yield app_builder.build()
 
 
 @pytest.fixture()
