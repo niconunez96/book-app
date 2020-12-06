@@ -15,7 +15,8 @@ class Book(db.Model):
     author_id = db.Column(db.Integer, db.ForeignKey('author.id'))
     author = relationship('Author')
 
-    def __init__(self, title: str, description: str, author: Author):
+    def __init__(self, title: str, description: str, author: Author, **kwargs):
+        super(Book, self).__init__(**kwargs)
         self.title = title
         self.description = description
         self.author = author
