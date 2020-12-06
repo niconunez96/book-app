@@ -32,3 +32,6 @@ services:
             - db_server
         ports:
             - "8000:5000"
+        restart: on-failure
+        stdin_open: true
+        tty: true
