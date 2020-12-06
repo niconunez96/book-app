@@ -29,6 +29,5 @@ class Book(db.Model):
             'id': self.id,
             'title': self.title,
             'description': self.description,
-            'author': str(self.author),
             'created': str(self.created),
         }
