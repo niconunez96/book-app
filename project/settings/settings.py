@@ -1,7 +1,7 @@
 import os
 
 
-class Config(object):
+class Config:
     DEBUG = False
     TESTING = False
     DB_CONNECTOR = os.environ.get("DB_CONNECTOR")
