@@ -27,13 +27,7 @@ def find_by_id(author_id: int):
         author_finder = AuthorFinder(AuthorMySQLRepository())
         return Response(jsonify(author_finder.execute(author_id)), 200)
     except EntityNotFound:
-        return Response(
-            {
-                'error': "NOT_FOUND",
-                'description': "Resource requested does not exist",
-            },
-            404,
-        )
+        return NOT_FOUND_RESPONSE
 
 
 @authors.route("/", methods=['POST'])

@@ -18,6 +18,6 @@ def find_all():
 def find_by_id(book_id: int):
     try:
         book_finder = BookFinder(BookMySQLRepository())
-        return jsonify(book_finder.execute(book_id)), 200
+        return Response(jsonify(book_finder.execute(book_id)), 200)
     except EntityNotFound:
         return NOT_FOUND_RESPONSE
