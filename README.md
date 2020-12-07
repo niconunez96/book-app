@@ -22,6 +22,7 @@ Se puede correr la aplicacion utilizando docker-compose o localmente
 4. Para correr la aplicacion localmente se debe crear una base de datos con el nombre que desee y luego se debe editar las variables de entorno en el archivo `.env` (No se deben pushear los cambios de este archivo)
 
 5. Una vez configuradas las variables de entorno se deben correr las migraciones:
+
     `python ./project/manage.py db upgrade`
 
 6. Correr el servidor con:
@@ -49,8 +50,8 @@ Se puede correr la aplicacion utilizando docker-compose o localmente
 
 **Ejecutar tests dentro del container**
 
-`docker exec -it book-app sh`
-`pytest -s project/tests/..`
+- `docker exec -it book-app sh`
+- `pytest -s project/tests/`
 
 ## Cómo ver los datos de la base de datos de Docker
 `make db-client`

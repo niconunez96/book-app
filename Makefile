@@ -6,7 +6,10 @@ update_requirements:
 	pip freeze | grep -v 0.0.0 > requirements.txt
 
 server-logs:
-	docker attach -f book-app
+	docker logs -f book-app
+
+debug:
+	docker attach book-app
 
 runserver:
 	docker-compose up --build -d
