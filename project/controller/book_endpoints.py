@@ -2,7 +2,7 @@ from flask import jsonify, Blueprint
 from books.application.book import BooksFinder, BookFinder
 from books.domain import EntityNotFound
 from books.infrastructure.book_mysql_repository import BookMySQLRepository  # noqa
-from controller.response import Response
+from controller.response import Response, NOT_FOUND_RESPONSE
 
 
 books = Blueprint("books", __name__, url_prefix="/api/v1/books")
@@ -20,10 +20,4 @@ def find_by_id(book_id: int):
         book_finder = BookFinder(BookMySQLRepository())
         return jsonify(book_finder.execute(book_id)), 200
     except EntityNotFound:
-        return Response(
-            {
-                'error': "NOT_FOUND",
-                'description': "Resource requested does not exist",
-            },
-            404,
-        )
+        return NOT_FOUND_RESPONSE

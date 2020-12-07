@@ -9,7 +9,7 @@ from books.application.book import BookCreator, AuthorBooksFinder
 from books.domain import EntityNotFound
 from books.infrastructure.author_mysql_repository import AuthorMySQLRepository
 from books.infrastructure.book_mysql_repository import BookMySQLRepository
-from controller.response import Response
+from controller.response import Response, NOT_FOUND_RESPONSE
 
 
 authors = Blueprint("author", __name__, url_prefix="/api/v1/authors")
@@ -61,13 +61,7 @@ def add_book(author_id: int):
             201,
         )
     except AuthorDoesNotExist:
-        return Response(
-            {
-                'error': "NOT_FOUND",
-                'description': "Resource requested does not exist",
-            },
-            404,
-        )
+        return NOT_FOUND_RESPONSE
 
 
 @authors.route("/<int:author_id>/books/", methods=['GET'])
@@ -80,10 +74,4 @@ def find_books(author_id: int):
         author_books = author_book_finder.execute(author_id)
         return Response(jsonify(author_books), 200)
     except AuthorDoesNotExist:
-        return Response(
-            {
-                'error': "NOT_FOUND",
-                'description': "Resource requested does not exist",
-            },
-            404,
-        )
+        return NOT_FOUND_RESPONSE
