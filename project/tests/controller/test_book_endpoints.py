@@ -51,7 +51,11 @@ class TestBookEndpoints:
             'created': "2020-09-11 00:00:00",
         }
 
-    def test_find_book_with_unexistent_id(self, db_test, client):
+    def test_should_return_not_found_when_book_id_does_not_exist(
+        self,
+        db_test,
+        client,
+    ):
         response = client.get("/api/v1/books/-1/")
 
         assert response.status == "404 NOT FOUND"

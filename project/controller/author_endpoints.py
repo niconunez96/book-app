@@ -57,7 +57,7 @@ def add_book(author_id: int):
     try:
         book_id = book_creator.execute(author_id, book_body=body)
         return Response(
-            {"resource_url": "/api/v1/books/{}".format(book_id)},
+            {"resource_url": "/api/v1/books/{}/".format(book_id)},
             201,
         )
     except AuthorDoesNotExist:

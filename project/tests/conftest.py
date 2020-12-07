@@ -1,8 +1,16 @@
 import pytest
 from werkzeug.utils import import_string
 
-from server import app
 from database import db
+from server import app
+from tests.test_books.factory.author_factory import AuthorFactory
+from tests.test_books.factory.book_factory import BookFactory
+
+
+@pytest.fixture(autouse=True)
+def reset_factory_boy_sequences():
+    AuthorFactory.reset_sequence()
+    BookFactory.reset_sequence()
 
 
 @pytest.fixture
